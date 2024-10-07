@@ -16,7 +16,7 @@ RUN chmod +x mvnw  # Ensure mvnw is executable
 RUN ./mvnw clean package -DskipTests
 
 # Use a smaller base image for the final image
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jre-focal
 
 # Set the working directory in the container
 WORKDIR /app

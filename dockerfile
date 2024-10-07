@@ -1,32 +1,27 @@
-# 1. Use a base image with JDK to build the Spring Boot app
-FROM openjdk:17-jdk-alpine AS build
+# Use an official Java runtime as a parent image
+FROM openjdk:17-jdk-slim AS build
 
-# 2. Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# 3. Copy the Maven build files (pom.xml) to cache dependencies
+# Copy the pom.xml and source code into the container
 COPY pom.xml .
-
-# 4. Resolve dependencies
-RUN ./mvnw dependency:go-offline
-
-# 5. Copy the source code into the container
 COPY src ./src
 
-# 6. Build the application
+# Install dependencies
 RUN ./mvnw clean package -DskipTests
 
-# 7. Use a lightweight base image to run the Spring Boot application
-FROM openjdk:17-jdk-alpine
+# Use a smaller base image for the final image
+FROM openjdk:17-jre-slim
 
-# 8. Set the working directory for the final image
+# Set the working directory in the container
 WORKDIR /app
 
-# 9. Copy the built JAR file from the build stage
-COPY --from=build /app/target/cicd-0.0.1-SNAPSHOT.jar /app/cicd-0.0.1-SNAPSHOT.jar
+# Copy the jar file from the previous stage
+COPY --from=build /app/target/*.jar app.jar
 
-# 10. Expose the port that the app listens on
+# Expose the port your app runs on
 EXPOSE 8080
 
-# 11. Command to run the application
-ENTRYPOINT ["java", "-jar", "/app/cicd-0.0.1-SNAPSHOT.jar"]
+# Define the command to run your application
+ENTRYPOINT ["java", "-jar", "app.jar"]

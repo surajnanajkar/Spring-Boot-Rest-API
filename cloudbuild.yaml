@@ -1,6 +1,6 @@
 steps:
   # Step 1: Configure Docker to authenticate with Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
     args:
       - '-c'

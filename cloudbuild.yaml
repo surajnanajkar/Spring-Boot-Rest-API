@@ -1,0 +1,24 @@
+steps:
+  # Step 1: Configure Docker to authenticate with Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud auth configure-docker us-central1-docker.pkg.dev
+
+  # Step 2: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', '-t', 'us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA', '.'
+    ]
+
+  # Step 3: Push the Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 'us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA'
+    ]
+
+# Define images that are built and pushed
+images:
+  - 'us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA'

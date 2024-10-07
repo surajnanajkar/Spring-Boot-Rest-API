@@ -22,3 +22,7 @@ steps:
 # Define images that are built and pushed
 images:
   - 'us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA'
+
+options:
+  logging: GCS_ONLY
+  logs_bucket: gs://my-cloud-build-logs-cicd

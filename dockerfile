@@ -6,9 +6,13 @@ WORKDIR /app
 
 # Copy the pom.xml and source code into the container
 COPY pom.xml .
+COPY mvnw .
+COPY mvnw.cmd .
+COPY .mvn ./.mvn
 COPY src ./src
 
 # Install dependencies
+RUN chmod +x mvnw  # Ensure mvnw is executable
 RUN ./mvnw clean package -DskipTests
 
 # Use a smaller base image for the final image

@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-app-deployment
+  name: spring-boot-app
   labels:
-    app: spring-boot-app-deployment
+    app: spring-boot-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: spring-boot-app-deployment
+      app: spring-boot-app
   template:
     metadata:
       labels:
-        app: spring-boot-app-deployment
+        app: spring-boot-app
     spec:
       containers:
-        - name: spring-boot-app-deployment
+        - name: spring-boot-app
           image: gcr.io/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA  # Update with your GCR image location
           ports:
             - containerPort: 8080

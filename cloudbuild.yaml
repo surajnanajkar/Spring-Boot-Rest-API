@@ -22,29 +22,29 @@ steps:
       # Step 3: Set kubectl context to GKE cluster
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-          - 'container'
-          - 'clusters'
-          - 'get-credentials'
-          - 'my-cicd-cluster'
-          - '--region'
-          - 'europe-west3'
-          - '--project'
-          - 'beaming-botany-437905-u5'
+      - 'container'
+      - 'clusters'
+      - 'get-credentials'
+      - 'my-cicd-cluster'
+      - '--region'
+      - 'europe-west3'
+      - '--project'
+      - 'beaming-botany-437905-u5'
 
       # Step 4: Deploy the image to GKE using kubectl
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
-          - 'set'
-          - 'image'
-          - 'deployment/spring-boot-app-deployment'
-          - 'spring-boot-app=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$SHORT_SHA'
+      - 'set'
+      - 'image'
+      - 'deployment/spring-boot-app-deployment'
+      - 'spring-boot-app=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$SHORT_SHA'
     env:
-          - 'CLOUDSDK_COMPUTE_REGION=europe-west3'
-          - 'CLOUDSDK_CONTAINER_CLUSTER=my-cicd-cluster'
+      - 'CLOUDSDK_COMPUTE_REGION=europe-west3'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cicd-cluster'
 
-  substitutions:
-      _GKE_CLUSTER: 'my-cicd-cluster'
-      _GKE_REGION: 'europe-west3'
+substitutions:
+  _GKE_CLUSTER: 'my-cicd-cluster'
+  _GKE_REGION: 'europe-west3'
 
 # Define images that are built and pushed
 images:

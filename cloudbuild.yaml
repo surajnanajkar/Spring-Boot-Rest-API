@@ -38,7 +38,7 @@ steps:
       - 'set'
       - 'image'
       - 'deployment/spring-boot-app-deployment'
-      - 'cicd-sha256-1=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$SHORT_SHA'
+      - 'cicd-sha256-1=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA'
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west3'
       - 'CLOUDSDK_CONTAINER_CLUSTER=my-cicd-cluster'

@@ -26,4 +26,9 @@ public class EmployeeController {
         return "Hello World 2";
     }
 
+    @GetMapping("/getData3")
+    public String getdata3(){
+        return "Hello World 3";
+    }
+
 }

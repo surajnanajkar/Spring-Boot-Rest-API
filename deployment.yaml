@@ -15,7 +15,7 @@ spec:
         app: spring-boot-app
     spec:
       containers:
-        - name: spring-boot-app
+        - name: cicd-sha256-1
           image: gcr.io/beaming-botany-437905-u5/my-docker-repo/cicd:$COMMIT_SHA  # Update with your GCR image location
           ports:
             - containerPort: 8080

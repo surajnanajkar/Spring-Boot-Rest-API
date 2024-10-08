@@ -26,8 +26,8 @@ steps:
       - 'clusters'
       - 'get-credentials'
       - 'my-cicd-cluster'
-      - '--region'
-      - 'europe-west3'
+      - '--zone'
+      - 'europe-west3-b'
       - '--project'
       - 'beaming-botany-437905-u5'
 
@@ -39,12 +39,12 @@ steps:
       - 'deployment/spring-boot-app-deployment'
       - 'spring-boot-app=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$SHORT_SHA'
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=europe-west3'
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west3-b'
       - 'CLOUDSDK_CONTAINER_CLUSTER=my-cicd-cluster'
 
 substitutions:
   _GKE_CLUSTER: 'my-cicd-cluster'
-  _GKE_REGION: 'europe-west3'
+  _GKE_ZONE: 'europe-west3-b'
 
 # Define images that are built and pushed
 images:

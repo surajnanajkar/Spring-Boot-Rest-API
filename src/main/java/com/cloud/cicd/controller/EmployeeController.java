@@ -20,4 +20,10 @@ public class EmployeeController {
         return "Hello World";
     }
 
+
+    @GetMapping("/getData2")
+    public String getdata2(){
+        return "Hello World 2";
+    }
+
 }

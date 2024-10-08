@@ -37,7 +37,7 @@ steps:
     args:
       - 'set'
       - 'image'
-      - 'deployment/spring-boot-app-deployment'
+      - 'deployment/spring-boot-apppp-deployment'
       - 'spring-boot-app-deployment=us-central1-docker.pkg.dev/beaming-botany-437905-u5/my-docker-repo/cicd:$SHORT_SHA'
     env:
       - 'CLOUDSDK_COMPUTE_REGION=europe-west3'

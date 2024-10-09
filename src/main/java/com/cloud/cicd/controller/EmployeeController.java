@@ -31,4 +31,9 @@ public class EmployeeController {
         return "Hello World 3";
     }
 
+
+    @GetMapping("/getData4")
+    public String getdata4(){
+        return "Hello World 4";
+    }
 }

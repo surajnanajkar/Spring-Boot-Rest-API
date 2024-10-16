@@ -40,7 +40,7 @@ steps:
       - '--service-account=sa-wl-main@glb-fs-wgh-app-dev.iam.gserviceaccount.com'
       - '--min-instances=1'
       - '--vpc-connector=projects/glb-fs-wgh-app-dev/locations/europe-west3/connectors/vpc-con'
-      - '--vpn-egress=all-traffic'
+      - '--vpc-egress=all-traffic'
 
 # Define images that are built and pushed
 images:

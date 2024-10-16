@@ -2,13 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>CloudCid</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thymeleaf Table Example</title>
+
+    <!-- Add Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Additional custom styles for your table */
+        body {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            margin: 0 auto;
+            max-width: 80%;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Welcome to Cloud CID WorldLine Hackathon 2024 <img th:src="@{/images/WL_logo.png}" style="
+<div class="container">
+    <h1>Welcome to WorldLine Hackathon 2024 <img th:src="@{/images/WL_logo.png}" style="
     width: 20%;" alt="My Image" /> </h1>
-<p th:text="${message}"></p>
-<img th:src="@{/images/Hackathon.png}" style="
-    width: 100%;" alt="My Image" />
+
+    </br>
+    </br>
+
+    <h2>Participants Information</h2>
+    <div class="table-container">
+        <!-- Thymeleaf Table -->
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterate over a list of employees -->
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}"></td>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.designation}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Optional JavaScript for Bootstrap (if you use any JavaScript components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

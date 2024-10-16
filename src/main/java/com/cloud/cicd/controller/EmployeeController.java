@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -16,20 +17,17 @@ public class EmployeeController {
 
     @GetMapping("/getData")
     public ResponseEntity getdata(){
-        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
 
-        EmployeeDTO employeeDTO = new EmployeeDTO();
-        employeeDTO.setId(1);
-        employeeDTO.setName("Ravindra More");
-        employeeDTOList.add(employeeDTO);
-
-        employeeDTO = new EmployeeDTO();
-        employeeDTO.setId(2);
-        employeeDTO.setName("Suraj Nanajkar");
-        employeeDTOList.add(employeeDTO);
+        List<EmployeeDTO> employeeList = Arrays.asList(
+                new EmployeeDTO(1, "Ravindra More", "Lead Consultant - Architect"),
+                new EmployeeDTO(2, "Minal Karale", "Senior Consultant - Delivery"),
+                new EmployeeDTO(3, "Santosh Mali", "Senior Consultant - Delivery"),
+                new EmployeeDTO(4, "Aakash Malpani", "Consultant - Delivery"),
+                new EmployeeDTO(4, "Suraj Nanajkar", "Consultant - Delivery")
+        );
 
 
-        return ResponseEntity.ok(employeeDTOList);
+        return ResponseEntity.ok(employeeList);
 
     }
 }

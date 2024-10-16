@@ -41,6 +41,7 @@ steps:
       - '--min-instances=1'
       - '--vpc-connector=projects/glb-fs-wgh-app-dev/locations/europe-west3/connectors/vpc-con'
       - '--vpc-egress=all-traffic'
+      - '--ingress=internal-and-cloud-load-balancing'
 
 # Define images that are built and pushed
 images:

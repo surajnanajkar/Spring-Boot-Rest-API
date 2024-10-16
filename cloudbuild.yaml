@@ -32,7 +32,7 @@ steps:
       - '--image'
       - 'europe-docker.pkg.dev/glb-fs-wgh-app-dev/fs-3-15-registry-dev-testing/cloud-cicd-github:$COMMIT_SHA'
       - '--region'
-      - 'europe-west-3'          # Replace with your desired region
+      - 'europe-west3'          # Replace with your desired region
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'  # Allow unauthenticated access

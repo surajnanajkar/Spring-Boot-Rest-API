@@ -12,4 +12,10 @@ public class WebController {
         model.addAttribute("message", "Hello, Team Google!");
         return "greeting";
     }
+
+    @GetMapping("/cloudcid")
+    public String cloudCid(Model model) {
+        model.addAttribute("message", "Hello, Team Google!");
+        return "cloudcid";
+    }
 }

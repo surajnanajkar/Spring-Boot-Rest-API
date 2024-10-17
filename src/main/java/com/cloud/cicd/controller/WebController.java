@@ -25,7 +25,7 @@ public class WebController {
                 new EmployeeDTO(2, "Minal Karale", "Senior Consultant - Delivery"),
                 new EmployeeDTO(3, "Santosh Mali", "Senior Consultant - Delivery"),
                 new EmployeeDTO(4, "Aakash Malpani", "Consultant - Delivery"),
-                new EmployeeDTO(4, "Suraj Nanajkar", "Consultant - Delivery")
+                new EmployeeDTO(5, "Suraj Nanajkar", "Consultant - Delivery")
         );
 
         model.addAttribute("employees", employeeList);

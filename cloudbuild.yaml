@@ -37,26 +37,21 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'  # Allow unauthenticated access
 
-      # 1. Clone the Devai CLI from the GitHub repository
   - name: 'gcr.io/cloud-builders/git'
     args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]
 
-      # 2. Check if the repo was cloned successfully
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
     args: [ '-c', 'echo "Listing contents of cloned repo:" && ls -l && ls -l genai-for-developers' ]
 
-      # 3. Change directory to the devai-cli folder and check contents
   - name: 'gcr.io/cloud-builders/docker'
    entrypoint: '/bin/sh'
    args: [ '-c', 'cd genai-for-developers/devai-cli && echo "Listing contents of devai-cli:" && ls -l' ]
 
-   # 4. Make the devai file executable and verify permissions
-   - name: 'gcr.io/cloud-builders/docker'
-      entrypoint: '/bin/sh'
-      args: [ '-c', 'chmod +x genai-for-developers/devai-cli/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/devai' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/devai' ]
 
-      # 5. Run Devai CLI test coverage command (add echo for clarity)
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
     args: [ '-c', 'echo "Running Devai testcoverage command" && ./genai-for-developers/devai-cli/devai review testcoverage -c ./src' ]

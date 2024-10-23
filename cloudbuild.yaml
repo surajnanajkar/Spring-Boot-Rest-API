@@ -54,7 +54,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'echo "Running Devai testcoverage command" && ./genai-for-developers/devai-cli/devai review testcoverage -c ./src' ]
+    args: [ '-c', 'echo "Running Devai testcoverage command" && ./genai-for-developers/devai-cli/src/devai review testcoverage -c ./src' ]
 
 # Define images that are built and pushed
 images:

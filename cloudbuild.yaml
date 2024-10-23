@@ -45,8 +45,8 @@ steps:
     args: [ '-c', 'echo "Listing contents of cloned repo:" && ls -l && ls -l genai-for-developers' ]
 
   - name: 'gcr.io/cloud-builders/docker'
-   entrypoint: '/bin/sh'
-   args: [ '-c', 'cd genai-for-developers/devai-cli && echo "Listing contents of devai-cli:" && ls -l' ]
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'cd genai-for-developers/devai-cli && echo "Listing contents of devai-cli:" && ls -l' ]
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'

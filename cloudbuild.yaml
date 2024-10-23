@@ -70,7 +70,9 @@ steps:
         pip install ./genai-for-developers/devai-cli/src && \
         pip3 install -r ./genai-for-developers/devai-cli/src/requirements.txt && \
         pip3 install google-cloud-secret-manager json-repair && \
-        python3 -m devai review testcoverage -c ./src
+        python3 -m devai review testcoverage -c ./src && \
+        python3 -m review code  -c ./src/main/java/com/cloud/cicd && \
+        python3 -m review security -c ./src/main/java/com/cloud/cicd
 
 # Define images that are built and pushed
 images:

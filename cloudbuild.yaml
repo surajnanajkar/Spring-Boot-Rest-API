@@ -43,6 +43,35 @@ steps:
       - '--vpc-egress=all-traffic'
       - '--ingress=internal-and-cloud-load-balancing'
 
+  - name: 'gcr.io/cloud-builders/git'
+    args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'echo "Listing contents of cloned repo:" && ls -l && ls -l genai-for-developers' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'cd genai-for-developers/devai-cli && echo "Listing contents of devai-cli:" && ls -l' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/src/' ]
+
+  - name: 'python:3.9'
+    entrypoint: '/bin/sh'
+    env:
+      - 'PROJECT_ID=glb-fs-wgh-app-dev'
+      - 'LOCATION=europe-west3'
+    args:
+      - '-c'
+      - |
+        pip install --upgrade pip && \
+        pip install ./genai-for-developers/devai-cli/src && \
+        pip3 install -r ./genai-for-developers/devai-cli/src/requirements.txt && \
+        pip3 install google-cloud-secret-manager json-repair && \
+        python3 -m devai review testcoverage -c ./src
+
 # Define images that are built and pushed
 images:
   - 'europe-docker.pkg.dev/glb-fs-wgh-app-dev/fs-3-15-registry-dev-testing/cloud-cicd-github:$COMMIT_SHA'

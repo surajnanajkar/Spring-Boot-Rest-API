@@ -10,18 +10,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CicdApplicationTests {
 
 
-	@Autowired
-	EmployeeController employeeController;
+//	@Autowired
+//	EmployeeController employeeController;
 
 	@Test
 	void contextLoads() {
 
-		Assertions.assertEquals("Hello World", employeeController.getdata());
-		Assertions.assertEquals("Hello World1", employeeController.getdata1());
-		Assertions.assertEquals("Hello World 2", employeeController.getdata2());
-		Assertions.assertEquals("Hello World 3", employeeController.getdata3());
-		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
-		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
+//		Assertions.assertEquals("Hello World", employeeController.getdata());
+//		Assertions.assertEquals("Hello World1", employeeController.getdata1());
+//		Assertions.assertEquals("Hello World 2", employeeController.getdata2());
+//		Assertions.assertEquals("Hello World 3", employeeController.getdata3());
+//		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
+//		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
 
 
 

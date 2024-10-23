@@ -40,7 +40,7 @@ steps:
   # 1. Install Python
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: ['-c', 'apt-get update && apt-get install -y python3']
+    args: ['-c', 'apt-get update && apt-get install -y python3 python3-pip']
 
   - name: 'gcr.io/cloud-builders/git'
     args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]
@@ -59,7 +59,12 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'echo "Running Devai testcoverage command" && python3 genai-for-developers/devai-cli/src/devai review testcoverage -c ./src' ]
+    args: [ '-c', 'pip3 install ./genai-for-developers/devai-cli' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'python3 -m devai review testcoverage -c ./src' ]
+
 
 # Define images that are built and pushed
 images:

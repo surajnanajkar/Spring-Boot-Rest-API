@@ -19,6 +19,7 @@ class CicdApplicationTests {
 	void contextLoads() {
 
 		List<EmployeeDTO> employeeDTOList = (List<EmployeeDTO>) employeeController.getdata().getBody();
+		Assertions.assertEquals(6, employeeDTOList.size());
 		Assertions.assertEquals("Ravindra More", employeeDTOList.get(0).getName());
 		Assertions.assertEquals("Suraj Nanajkar", employeeDTOList.get(4).getName());
 	}

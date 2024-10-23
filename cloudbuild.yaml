@@ -59,7 +59,7 @@ steps:
       - '-c'
       - |
         pip install --upgrade pip && \
-        pip install ./genai-for-developers/devai-cli/src/devai && \
+        pip install ./genai-for-developers/devai-cli/src && \
         python3 -m devai review testcoverage -c ./src
 
 

@@ -50,7 +50,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/devai' ]
+    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/devai' ]
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'

@@ -1,3 +1,17 @@
+image: python:3.11-slim
+
+before_script:
+  - apt-get update && apt-get install -y git
+  - python --version ; pip --version  # For debugging
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - cd devai-cli/src
+  - pip install -r requirements.txt
+  - pip install --editable .
+  - cd ../..
+  - export GOOGLE_CLOUD_CREDENTIALS=$(echo $GOOGLE_CLOUD_CREDENTIALS)
+
 steps:
   # Step 1: Configure Docker to authenticate with Artifact Registry
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -42,6 +56,11 @@ steps:
       - '--vpc-connector=projects/glb-fs-wgh-app-dev/locations/europe-west3/connectors/vpc-con'
       - '--vpc-egress=all-traffic'
       - '--ingress=internal-and-cloud-load-balancing'
+
+  build-job:
+    stage:build
+    script:
+      - devai review testcoverage -c ./src
 
 # Define images that are built and pushed
 images:

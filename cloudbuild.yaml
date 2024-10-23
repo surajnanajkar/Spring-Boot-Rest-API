@@ -1,17 +1,3 @@
-image: python:3.11-slim
-
-before_script:
-  - apt-get update && apt-get install -y git
-  - python --version ; pip --version  # For debugging
-  - pip install virtualenv
-  - virtualenv venv
-  - source venv/bin/activate
-  - cd devai-cli/src
-  - pip install -r requirements.txt
-  - pip install --editable .
-  - cd ../..
-  - export GOOGLE_CLOUD_CREDENTIALS=$(echo $GOOGLE_CLOUD_CREDENTIALS)
-
 steps:
   # Step 1: Configure Docker to authenticate with Artifact Registry
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -57,10 +43,19 @@ steps:
       - '--vpc-egress=all-traffic'
       - '--ingress=internal-and-cloud-load-balancing'
 
-  build-job:
-    stage:build
-    script:
-      - devai review testcoverage -c ./src
+  # 5. Clone the Devai CLI from the GitHub repository
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git']
+
+  # 6. Change directory to the devai-cli folder
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: ['-c', 'cd genai-for-developers/devai-cli']
+
+  # 7. Run the Devai CLI (make sure it's executable)
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: ['-c', 'chmod +x devai && ./devai review testcoverage -c ./src']
 
 # Define images that are built and pushed
 images:

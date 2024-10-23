@@ -57,13 +57,14 @@ steps:
     entrypoint: '/bin/sh'
     args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/src/' ]
 
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'python:3.9'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'pip3 install ./genai-for-developers/devai-cli' ]
-
-  - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: '/bin/sh'
-    args: [ '-c', 'python3 -m devai review testcoverage -c ./src' ]
+    args:
+      - '-c'
+      - |
+        pip install --upgrade pip && \
+        pip install ./genai-for-developers/devai-cli && \
+        python3 -m devai review testcoverage -c ./src
 
 
 # Define images that are built and pushed

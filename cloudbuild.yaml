@@ -55,6 +55,9 @@ steps:
 
   - name: 'python:3.9'
     entrypoint: '/bin/sh'
+    env:
+      - 'PROJECT_ID=beaming-botany-437905-u5'
+      - 'LOCATION=us-central1'
     args:
       - '-c'
       - |

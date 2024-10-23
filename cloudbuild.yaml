@@ -48,12 +48,17 @@ steps:
     args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]
 
   - name: 'gcr.io/cloud-builders/docker'
+    id: 'List contents of devai-cli'
+    entrypoint: '/bin/sh'
+    args: [ '-c', 'cd genai-for-developers/devai-cli && echo "Listing contents of devai-cli:" && ls -l' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
     id: 'permissions to genai repository'
     entrypoint: '/bin/sh'
     args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/src/' ]
 
   - name: 'python:3.9'
-    id: 'Run DevAI and check code quality'
+    id: 'Run genai and check code quality'
     entrypoint: '/bin/sh'
     env:
       - 'PROJECT_ID=glb-fs-wgh-app-dev'

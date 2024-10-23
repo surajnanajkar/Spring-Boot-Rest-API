@@ -17,7 +17,7 @@ public class EmployeeController {
 
     @GetMapping("/getData1")
     public String getdata1(){
-        return "Hello World";
+        return "Hello World1";
     }
 
 

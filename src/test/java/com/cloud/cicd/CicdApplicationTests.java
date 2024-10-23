@@ -21,6 +21,7 @@ class CicdApplicationTests {
 		Assertions.assertEquals("Hello World 2", employeeController.getdata2());
 		Assertions.assertEquals("Hello World 3", employeeController.getdata3());
 		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
+		Assertions.assertEquals("Hello World 4", employeeController.getdata4());
 
 
 

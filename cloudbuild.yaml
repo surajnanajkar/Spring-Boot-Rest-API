@@ -37,6 +37,11 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'  # Allow unauthenticated access
 
+  # 1. Install Python
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: '/bin/sh'
+    args: ['-c', 'apt-get update && apt-get install -y python3']
+
   - name: 'gcr.io/cloud-builders/git'
     args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]
 
@@ -50,11 +55,11 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/src/devai' ]
+    args: [ '-c', 'chmod +x genai-for-developers/devai-cli/src/devai && echo "Checking permissions:" && ls -l genai-for-developers/devai-cli/src/' ]
 
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: '/bin/sh'
-    args: [ '-c', 'echo "Running Devai testcoverage command" && ./genai-for-developers/devai-cli/src/devai review testcoverage -c ./src' ]
+    args: [ '-c', 'echo "Running Devai testcoverage command" && python3 genai-for-developers/devai-cli/src/devai review testcoverage -c ./src' ]
 
 # Define images that are built and pushed
 images:

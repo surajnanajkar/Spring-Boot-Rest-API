@@ -37,10 +37,6 @@ steps:
 #      - 'managed'
 #      - '--allow-unauthenticated'  # Allow unauthenticated access
 
-  # 1. Install Python
-  - name: 'python:3.9'
-    entrypoint: '/bin/sh'
-    args: ['-c', 'pip install --upgrade pip']
 
   - name: 'gcr.io/cloud-builders/git'
     args: [ 'clone', 'https://github.com/GoogleCloudPlatform/genai-for-developers.git' ]

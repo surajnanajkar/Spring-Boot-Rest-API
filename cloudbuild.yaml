@@ -74,6 +74,7 @@ steps:
         python3 -m devai review code  -c ./src/main/java/com/cloud/cicd && \
         python3 -m devai review security -c ./src/main/java/com/cloud/cicd
 
+
 # Define images that are built and pushed
 images:
   - 'europe-docker.pkg.dev/glb-fs-wgh-app-dev/fs-3-15-registry-dev-testing/cloud-cicd-github:$COMMIT_SHA'
